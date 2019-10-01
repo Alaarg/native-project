@@ -15,8 +15,7 @@ export default class Login extends Component {
   state = {
     // users: [],
     inpUserName: "",
-    inpPassword: "",
-
+    inpPassword: ""
   };
 
   loginBttn = () => {
@@ -25,14 +24,15 @@ export default class Login extends Component {
     const user = { userName, password };
 
     console.log("user", user);
-//10.60.236.124
+    //127.0.0.1
     axios
-      .post("http://10.60.236.124:9000/Yasmin/auth", user)
+      .post("http://192.168.43.99:9000/Yasmin/auth", user)
       .then(res => {
         if (res.data.length) {
-          alert("user exissist ");
-          this.props.navigation.navigate("Home",{namebook:this.state.inpUserName})
-
+          // alert("user exissist ");
+          this.props.navigation.navigate("Home", {
+            namebook: this.state.inpUserName
+          });
         } else {
           alert("password and username do not match");
         }
@@ -43,7 +43,6 @@ export default class Login extends Component {
         console.log(error);
       });
   };
-
   UserName = inputText => {
     this.setState({ inpUserName: inputText });
   };
@@ -72,7 +71,6 @@ export default class Login extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      
       <View style={styles.container}>
         <View style={styles.form}>
           <Image
@@ -103,7 +101,6 @@ export default class Login extends Component {
             placeholder="كلمة السر "
             textContentType="password"
             secureTextEntry={true}
-
           />
           <Button title="دخول" onPress={this.loginBttn} />
           <Text

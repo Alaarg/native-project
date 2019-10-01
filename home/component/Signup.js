@@ -26,15 +26,15 @@ export default class Login extends Component {
     console.log("user", user);
     if (this.state.inpPassword === this.state.retypePassword) {
       axios
-        .post("http://10.60.236.124:9000/Yasmin/user", user)
+        .post("http://127.0.0.1:9000/Yasmin/user", user)
         .then(result => {
           this.setState({ user: [...user, result.data] });
         })
         .catch(error => {
           console.log(error);
         });
-               alert("you sign up ");
-        this.props.navigation.navigate("login")
+      alert("you sign up ");
+      this.props.navigation.navigate("login");
     } else {
       alert("password not match");
     }
@@ -98,7 +98,6 @@ export default class Login extends Component {
             textContentType="password"
             placeholder="كلمة السر "
             secureTextEntry={true}
-
           />
           <TextInput
             style={{
@@ -111,7 +110,6 @@ export default class Login extends Component {
             onChangeText={Text => this.reTypepassword(Text)}
             textContentType="password"
             secureTextEntry={true}
-
           />
 
           <Button title="أنشاء حساب" onPress={this.signUpBttn} />
